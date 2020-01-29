@@ -1,0 +1,25 @@
+{
+    "name": "vdebes/kata-roman-numerals",
+    "description": "Material for a coding dojo based on the famous kata Roman Numerals http://codingdojo.org/kata/RomanNumerals/",
+    "type": "project",
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "vdebes",
+            "email": "vdebes@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "vdebes\\RomanNumerals\\": "src"
+        },
+        "psr-0": {
+            "": "tests"
+        }
+    },
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^8.4",
+        "phpstan/phpstan": "^0.11.19"
+    }
+}
