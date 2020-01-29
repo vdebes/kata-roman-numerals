@@ -12,3 +12,7 @@ unit: ## Runs unit tests
 .PHONY: static
 static: ## Runs static analysis
 	vendor/bin/phpstan analyse src tests
+
+.PHONY: cs-fix
+cs-fix: ## Runs Codestyle Fixer
+	vendor/bin/php-cs-fixer fix
