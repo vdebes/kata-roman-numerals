@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/vdebes/kata-roman-numerals.svg?branch=master)](https://travis-ci.org/vdebes/kata-roman-numerals)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/d3212371239a59fae1e4/test_coverage)](https://codeclimate.com/github/vdebes/kata-roman-numerals/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d3212371239a59fae1e4/maintainability)](https://codeclimate.com/github/vdebes/kata-roman-numerals/maintainability)  
 
 # kata-roman-numerals
 Arabic to Roman numeral converter [code kata](http://codingdojo.org/kata/RomanNumerals/).
