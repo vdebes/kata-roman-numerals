@@ -4,7 +4,7 @@ namespace vdebes\RomanNumerals;
 
 class ToRomanConverter
 {
-    public function oneToRoman()
+    public function convert(int $integer)
     {
         return 'I';
     }
