@@ -15,7 +15,7 @@ This is _supposed to be_ a medium difficulty problem.
 ### Rules
 * **Iterate using TDD**
 * Programming is done in pairs with navigator (defines the implementation) and driver (writes the code only)
-* Each participant is navigator for 5min minimum.
+* Each participant is navigator for 5min, at least one time.
 * After 5min the navigator becomes driver and a new navigator steps in.
 * At any point in time a navigator can decide to refactor.
 
