@@ -38,7 +38,9 @@ class ToRomanConverterTest extends TestCase
         }
 
         foreach ($conversions as $conversion) {
-            $this->conversions[$conversion[0]] = $conversion[1];
+            if (is_array($conversion) && isset($conversion[0]) && isset($conversion[1])) {
+                $this->conversions[$conversion[0]] = $conversion[1];
+            }
         }
     }
 }
