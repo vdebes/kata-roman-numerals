@@ -12,7 +12,10 @@ class ToRomanConverter
 
     public function convert(int $integer)
     {
-        $roman = '';
+
+        if ($integer % 5 === 0) {
+            return self::MAPPING[5];
+        }
         if ($integer % 5 === 4) {
             return self::MAPPING[1].self::MAPPING[5];
         }
