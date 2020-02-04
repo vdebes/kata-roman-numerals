@@ -13,23 +13,18 @@ class ToRomanConverter
 
     public function convert(int $integer)
     {
-        if (substr($integer, -1) === '4' && $integer > 10) {
+        if (array_key_exists($integer, self::MAPPING)) {
+            return self::MAPPING[$integer];
+        }
+        if ('4' === substr($integer, -1) && $integer > 10) {
             return 'XIV';
         }
 
-        if ($integer % 50 === 0) {
-            return self::MAPPING[50];
+        if (0 === $integer % 10 && $integer <= 30) {
+            return str_repeat(self::MAPPING[10], $integer / 10);
         }
 
-        if ($integer % 10 === 0 && $integer <= 30) {
-            return str_repeat(self::MAPPING[10], $integer/10);
-        }
-
-        if ($integer % 5 === 0) {
-            return self::MAPPING[5];
-        }
-
-        if ($integer % 5 === 4) {
+        if (4 === $integer % 5) {
             return self::MAPPING[1].self::MAPPING[5];
         }
 
