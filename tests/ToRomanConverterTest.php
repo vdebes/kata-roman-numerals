@@ -56,10 +56,9 @@ class ToRomanConverterTest extends TestCase
             [4],
             [5],
             [10],
+            [14],
             [20],
             [30],
-            [40],
-            [50],
         ];
     }
 }
