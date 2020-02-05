@@ -33,33 +33,23 @@ class ToRomanConverter
 
         $dividend = $integer;
         $divisors = array_keys(self::ROMAN_MAPPING);
-        $index = 0;
-        do {
-            $divisor = $divisors[$index];
+        foreach ($divisors as $divisor) {
             $roundDivisor = self::ROMAN_ROUNDS[$divisor] ?? null;
-
-            if (($divisor - $roundDivisor ?? 0) > $dividend) {
-                ++$index;
+            if ($dividend < ($divisor - $roundDivisor ?? 0)) {
                 continue;
             }
 
-            if ($divisor === $dividend) {
-                return $romanConversion.self::ROMAN_MAPPING[$dividend];
-            }
-
-            if ($dividend > $divisor) {
-                $romanConversion .= self::ROMAN_MAPPING[$divisor];
-                $dividend -= $divisor;
-                continue;
+            if ($dividend >= $divisor) {
+                $quotient = intdiv($dividend, $divisor);
+                $dividend -= $quotient * $divisor;
+                $romanConversion .= str_repeat(self::ROMAN_MAPPING[$divisor], $quotient);
             }
 
             if ($roundDivisor && $dividend >= ($divisor - $roundDivisor)) {
                 $romanConversion .= self::ROMAN_MAPPING[$roundDivisor].self::ROMAN_MAPPING[$divisor];
                 $dividend -= $divisor - $roundDivisor;
             }
-
-            ++$index;
-        } while ($dividend > 0);
+        }
 
         return $romanConversion;
     }
