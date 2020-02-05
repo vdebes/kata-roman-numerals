@@ -17,13 +17,16 @@ class ToRomanConverterTest extends TestCase
         parent::setUp();
     }
 
-    public function testConvert1ToRoman()
+    /**
+     * @dataProvider getIntegersToConvert
+     */
+    public function testConvertToRoman(int $integer): void
     {
         $testedInstance = new ToRomanConverter();
 
-        $output = $testedInstance->convert(1);
+        $output = $testedInstance->convert($integer);
 
-        Assert::assertEquals($this->conversions[1], $output);
+        Assert::assertEquals($this->conversions[$integer], $output);
     }
 
     private function setConversions()
@@ -41,6 +44,14 @@ class ToRomanConverterTest extends TestCase
             if (is_array($conversion) && isset($conversion[0]) && isset($conversion[1])) {
                 $this->conversions[$conversion[0]] = $conversion[1];
             }
+        }
+    }
+
+    public function getIntegersToConvert(): \Generator
+    {
+        $range = range(1, 3999);
+        foreach ($range as $testedInteger) {
+            yield [$testedInteger];
         }
     }
 }
