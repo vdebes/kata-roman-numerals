@@ -9,11 +9,11 @@ class ToRomanConverterTest extends TestCase
     private const INTEGER = 'integer';
     private const ROMAN = 'roman';
 
-    private $conversions = [];
+    private static $conversions = [];
 
-    public function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->setConversions();
+        self::setConversions();
         parent::setUp();
     }
 
@@ -26,10 +26,10 @@ class ToRomanConverterTest extends TestCase
 
         $output = $testedInstance->convert($integer);
 
-        Assert::assertEquals($this->conversions[$integer], $output);
+        Assert::assertEquals(self::$conversions[$integer], $output);
     }
 
-    private function setConversions()
+    private static function setConversions()
     {
         $conversions = [];
         $handle = fopen(__DIR__.'/roman.csv', 'r');
@@ -42,7 +42,7 @@ class ToRomanConverterTest extends TestCase
 
         foreach ($conversions as $conversion) {
             if (is_array($conversion) && isset($conversion[0]) && isset($conversion[1])) {
-                $this->conversions[$conversion[0]] = $conversion[1];
+                self::$conversions[$conversion[0]] = $conversion[1];
             }
         }
     }
