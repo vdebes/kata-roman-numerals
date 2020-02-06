@@ -13,12 +13,12 @@ class ToRomanConverter
     private $limitLow;
     private $limitHigh;
 
-    public function convert(int $integer)
+    public function convert(int $integer): string
     {
         $this->setLimits($integer);
 
-        $times = (int) floor(5 / $integer);
-        $modulo = 5 % $integer;
+        $times = (int) floor($this->limitHigh / $integer);
+        $modulo = $this->limitHigh % $integer;
 
         if (array_key_exists($integer, self::INT_ROMAN_MAPPING)) {
             return self::INT_ROMAN_MAPPING[$integer];
@@ -31,18 +31,21 @@ class ToRomanConverter
         return str_repeat(self::INT_ROMAN_MAPPING[$this->limitLow], $integer);
     }
 
-    private function setLimits(int $integer)
+    private function setLimits(int $integer): void
     {
         $integerMappingIndexes = array_keys(self::INT_ROMAN_MAPPING );
 
         foreach ($integerMappingIndexes as $index => $romanIntegerValue) {
-            if ($integer >= $romanIntegerValue) {
+            if ($this->limitLow !== null && $this->limitHigh !== null) {
+                return;
+            }
+
+            $next = $integerMappingIndexes[$index+1];
+            if ($integer >= $romanIntegerValue && $integer < $next) {
                 $this->limitLow = $romanIntegerValue;
             }
 
-            $this->limitHigh = $integerMappingIndexes[$index+1];
-
-            return;
+            $this->limitHigh = $next;
         }
     }
 }
