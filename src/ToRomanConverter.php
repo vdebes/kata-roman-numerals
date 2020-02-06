@@ -10,10 +10,12 @@ class ToRomanConverter
         10 => 'X',
     ];
 
+    private $limitLow;
+    private $limitHigh;
+
     public function convert(int $integer)
     {
-        $limitLow = 1;
-        $limitHigh = 5;
+        $this->setLimits($integer);
 
         $times = (int) floor(5 / $integer);
         $modulo = 5 % $integer;
@@ -23,9 +25,24 @@ class ToRomanConverter
         }
 
         if ($modulo === 1 && $times === 1) {
-            return self::INT_ROMAN_MAPPING[$limitLow].self::INT_ROMAN_MAPPING[$limitHigh];
+            return self::INT_ROMAN_MAPPING[$this->limitLow].self::INT_ROMAN_MAPPING[$this->limitHigh];
         }
 
-        return str_repeat(self::INT_ROMAN_MAPPING[$limitLow], $integer);
+        return str_repeat(self::INT_ROMAN_MAPPING[$this->limitLow], $integer);
+    }
+
+    private function setLimits(int $integer)
+    {
+        $integerMappingIndexes = array_keys(self::INT_ROMAN_MAPPING );
+
+        foreach ($integerMappingIndexes as $index => $romanIntegerValue) {
+            if ($integer >= $romanIntegerValue) {
+                $this->limitLow = $romanIntegerValue;
+            }
+
+            $this->limitHigh = $integerMappingIndexes[$index+1];
+
+            return;
+        }
     }
 }
