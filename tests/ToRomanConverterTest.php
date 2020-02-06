@@ -17,13 +17,25 @@ class ToRomanConverterTest extends TestCase
         self::setConversions();
     }
 
-    public function testConvert1ToRoman()
+    /** @dataProvider converterDataProvider */
+    public function testConvertToRoman($integerToConvert)
     {
         $testedInstance = new ToRomanConverter();
 
-        $output = $testedInstance->convert(1);
+        $output = $testedInstance->convert($integerToConvert);
 
-        Assert::assertEquals(self::$conversions[1], $output);
+        Assert::assertEquals(self::$conversions[$integerToConvert], $output);
+    }
+
+    public function converterDataProvider()
+    {
+        return [
+            [1],
+            [2],
+            [3],
+            [4],
+            [5],
+        ];
     }
 
     private static function setConversions()
